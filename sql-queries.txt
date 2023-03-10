@@ -102,3 +102,9 @@ select ROUND(sqrt(pow(abs(min(LAT_N) - MAX(LAT_N)),2) + pow(abs(min(LONG_W) - MA
 # 26. Weather Observation Station 20 (Oracle)
 
 select round(median(LAT_N),4) from STATION
+
+# 27. Top Earners
+
+SELECT (SALARY*MONTHS)AS MAX_SALARY, COUNT(EMPLOYEE_ID) FROM EMPLOYEE WHERE (SALARY*MONTHS) = (SELECT MAX(SALARY*MONTHS) FROM EMPLOYEE) GROUP BY 1;
+
+# 28. 
