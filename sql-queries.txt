@@ -1,0 +1,104 @@
+# 1. Revising the Select Query I
+
+select * from CITY where POPULATION > 100000 and COUNTRYCODE = "USA"
+
+# 2. Revising the Select Query II
+
+select NAME from CITY where POPULATION > 120000 and COUNTRYCODE ="USA"
+
+# 3. Select All
+
+select * from CITY
+
+# 4. Select By ID
+
+select * from CITY where ID = 1661
+
+# 5. Japanese Cities' Attributes
+
+select * from CITY where COUNTRYCODE = "JPN"
+
+# 6. Japanese Cities' Names
+
+select name from CITY where COUNTRYCODE = "JPN"
+
+# 7. Weather Observation Station 1
+
+select CITY, STATE from STATION
+
+# 8. Weather Observation Station 3
+
+select distinct CITY from STATION where ID=IF(ID%2=0, ID, NULL)
+
+#9. Weather Observation Station 4
+
+select count(CITY) - count(distinct CITY) from STATION
+
+# 10. Weather Observation Station 5 (DB2)
+
+select CITY,LENGTH(CITY) from STATION order by Length(CITY) asc, CITY limit 1; 
+select CITY,LENGTH(CITY) from STATION order by Length(CITY) desc, CITY limit 1; 
+
+# 11. Weather Observation Station 6
+
+select distinct CITY from STATION where CITY like '[aeiou]%'
+
+# 12. Weather Observation Station 7
+
+select distinct CITY from STATION where CITY like '%[aeiou]'
+
+# 13. Weather Observation Station 8
+
+select distinct CITY from STATION where CITY like '[aeiou]%[aeiou]'
+
+# 14. Weather Observation Station 9
+
+select distinct CITY from STATION where CITY NOT like '[aeiou]%'
+
+# 15. Weather Observation Station 10
+
+select distinct CITY from STATION where CITY NOT like '%[aeiou]'
+
+# 16. Weather Observation Station 11
+
+select distinct CITY from STATION where CITY NOT like '[aeiou]%[aeiou]'
+
+# 17. Weather Observation Station 12
+
+select distinct CITY from STATION where CITY not like '[aeiou]%' and CITY not like '%[aeiou]'
+
+# 18. Higher Than 75 Marks
+
+select Name from STUDENTS where Marks > 75 order by Right(Name, 3), ID
+
+# 19. Employee Names
+
+select name from Employee order by name
+
+# 20. Employee Salaries
+
+select name from Employee where salary > 2000 and months < 10 order by employee_id
+
+# 21. Weather Observation Station 15
+
+SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N = (SELECT MAX(LAT_N) FROM STATION WHERE LAT_N < 137.2345)
+
+# 22. Weather Observation Station 16
+
+SELECT ROUND(LAT_N, 4) FROM STATION WHERE LAT_N = (SELECT MIN(LAT_N) FROM STATION WHERE LAT_N > 38.7780)
+
+# 23. Weather Observation Station 17
+
+SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N = (SELECT MIN(LAT_N) FROM STATION WHERE LAT_N >38.7780)
+
+# 24. Weather Observation Station 18
+
+select ROUND(abs(min(LAT_N) - MAX(LAT_N)) + abs(min(LONG_W) - MAX(LONG_W)), 4) from STATION 
+
+# 25. Weather Observation Station 19
+
+select ROUND(sqrt(pow(abs(min(LAT_N) - MAX(LAT_N)),2) + pow(abs(min(LONG_W) - MAX(LONG_W)),2)), 4) from STATION 
+
+# 26. Weather Observation Station 20 (Oracle)
+
+select round(median(LAT_N),4) from STATION
