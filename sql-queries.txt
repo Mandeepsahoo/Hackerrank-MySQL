@@ -107,4 +107,101 @@ select round(median(LAT_N),4) from STATION
 
 SELECT (SALARY*MONTHS)AS MAX_SALARY, COUNT(EMPLOYEE_ID) FROM EMPLOYEE WHERE (SALARY*MONTHS) = (SELECT MAX(SALARY*MONTHS) FROM EMPLOYEE) GROUP BY 1;
 
-# 28. 
+# 28. Weather Observation Station 2
+
+select round(sum(LAT_N), 2), round(sum(LONG_W), 2) from STATION;
+
+# 29. Weather Observation Station 13
+
+select round(sum(LAT_N), 4) from STATION where LAT_N > 38.7880 and LAT_N < 137.2345
+
+# 30. Weather Observation Station 14
+
+select round(max(LAT_N),4) from STATION where LAT_N < 137.2345
+
+# 31. Draw The Triangle 1 (MS SQL)
+
+Declare @i int = 22
+while(@i > 0)
+BEGIN
+    print  REPLICATE("* ", @i)
+    set @i = @i - 1
+END
+
+# 32. Draw The Triangle 2 (MS SQL)
+
+DECLARE @i INT = 1
+while (@i <23)
+BEGIN
+    PRINT replicate("* ", @i-2)
+    set @i = @i + 1
+END
+
+# 33. Type of Triangle
+
+select
+    if(A + B <= C OR A + C <= B OR B + C <= A, 'Not A Triangle',
+    IF(A = B and B = C, 'Equilateral',
+    IF(A = B OR A = C or B = C, 'Isosceles', 'Scalene')
+    )
+    ) as Type from Triangles
+
+# 34. The PADS
+
+Select concat(Name,'(',Left(Occupation, 1), ')') as nms from Occupations
+UNION ALL
+select concat('There are a total of ', count(Occupation), ' ', lower(Occupation) ,if(count(distinct Occupation), 's.', NULL)) as occ from Occupations group by Occupation order by nms;
+
+#35. New Companies
+
+SELECT Company.company_code,Company.founder,COUNT(DISTINCT Employee.lead_manager_code),COUNT(DISTINCT Employee.senior_manager_code), COUNT(DISTINCT Employee.manager_code), COUNT(DISTINCT Employee.employee_code) FROM Company INNER JOIN Employee ON Company.company_code = Employee.company_code GROUP BY Company.company_code,Company.founder ORDER BY Company.company_code ASC;
+
+#36. Revising Aggregations - The Count Function
+
+select count(ID) from CITY where POPULATION > 100000
+
+# 37. Revising Aggregations - The Sum Function
+
+select sum(POPULATION) from CITY where DISTRICT = 'California'
+
+# 38. Revising Aggregations - Averages
+
+select avg(POPULATION) from CITY where DISTRICT = 'California'
+
+# 39. Average Population
+
+select floor(avg(POPULATION)) from CITY 
+
+# 40. Japan Population
+
+select sum(POPULATION) from CITY where COUNTRYCODE  = 'JPN'
+
+# 41. Population Density Difference
+
+select Max(POPULATION) - MIN(POPULATION) from CITY
+
+# 42. The Blunder
+
+select ceil(avg(salary) - avg(replace(salary, '0', ''))) from EMPLOYEES
+
+# 43. Population Census
+
+select sum(CITY.POPULATION) from CITY INNER JOIN COUNTRY ON CITY.CountryCode = COUNTRY.Code where COUNTRY.CONTINENT = 'Asia'
+
+# 44. African Cities
+
+select CITY.NAME from CITY INNER JOIN COUNTRY ON CITY.CountryCode = COUNTRY.Code where COUNTRY.CONTINENT = 'Africa'
+
+# 45. Average Population of Each Continent
+
+select COUNTRY.Continent, floor(avg(CITY.Population))  from CITY INNER JOIN COUNTRY ON CITY.CountryCode = COUNTRY.Code group by 1
+
+# 46. 
+
+# 47. 
+
+# 48. 
+
+# 49.
+
+# 50. 
