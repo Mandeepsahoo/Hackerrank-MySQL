@@ -1,0 +1,16 @@
+# Profitable Stocks
+
+SELECT a.stock_code
+FROM price_today a
+INNER JOIN price_tomorrow b
+ON a.stock_code = b.stock_code
+WHERE b.price>a.price
+ORDER BY stock_code asc;
+
+# Merit Rewards
+
+SELECT ei.employee_ID, ei.name
+FROM employee_information ei
+JOIN last_quarter_bonus b ON b.employee_ID = ei.employee_ID
+WHERE ei.division LIKE 'HR'
+AND b.bonus >= 5000;
